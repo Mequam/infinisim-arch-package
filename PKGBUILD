@@ -9,7 +9,7 @@ pkgver=1.0
 pkgrel=0
 pkgdesc="local symulator for developing on the infiniwatch"
 arch=("x86_64")
-url="https://github.com/InfiniTimeOrg/InfiniSim.git"
+url="https://github.com/InfiniTimeOrg/InfiniSim"
 
 #license=('GPL')
 #groups=()
