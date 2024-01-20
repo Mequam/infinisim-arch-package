@@ -4,7 +4,7 @@
 # then please put 'unknown'.
 
 # Maintainer: Your Name <youremail@domain.com>
-pkgname="InfiniSim"
+pkgname="infinisim"
 pkgver=1.0
 pkgrel=0
 pkgdesc="local symulator for developing on the infiniwatch"
@@ -14,7 +14,7 @@ url="https://github.com/InfiniTimeOrg/InfiniSim.git"
 #license=('GPL')
 #groups=()
 #depends=()
-#makedepends=()
+makedepends=(cmake sdl2 gcc npm libpng)
 #checkdepends=()
 #optdepends=()
 #provides=()
@@ -30,16 +30,24 @@ noextract=()
 md5sums=("SKIP")
 validpgpkeys=()
 
+git_url="https://github.com/InfiniTimeOrg/InfiniSim.git"
+
 prepare() {
-	cd "$pkgname-$pkgver"
-	##patch -p1 -i "$srcdir/$pkgname-$pkgver.patch"
-	#git clone --recursive --depth=1 $url
+	cd "${srcdir}"
+	if [ ! -d "InfiniSim" ]; then
+		echo "[prepare] retrieving source!"
+		git clone --recursive --depth=1 $git_url
+		cd "InfiniSim"
+		npm install lv_font_conv@1.5.2
+	else
+		echo "[prepare] source already downloaded!"
+	fi
 }
 
 build() {
-	cd "$pkgname-$pkgver"
-	#./configure --prefix=/usr
-	#make
+	cd "${srcdir}/InfiniSim"
+	cmake -S . -B build
+	cmake --build build -j4
 }
 
 check() {
@@ -48,6 +56,8 @@ check() {
 }
 
 package() {
-	cd "$pkgname-$pkgver"
-	#make DESTDIR="$pkgdir/" install
+	echo "${pkgdir}"
+	echo "${srcdir}"
+	mkdir -p "${pkgdir}/usr/bin"
+	cp "${srcdir}/InfiniSim/build/infinisim" "${pkgdir}/usr/bin/"
 }
