@@ -1,20 +1,16 @@
-# This is an example PKGBUILD file. Use this as a start to creating your own,
-# and remove these comments. For more information, see 'man PKGBUILD'.
-# NOTE: Please fill out the license field for your package! If it is unknown,
-# then please put 'unknown'.
-
-# Maintainer: Your Name <youremail@domain.com>
+# Maintainer: Mequam <blue9ja@gmail.com>
 pkgname="infinisim"
 pkgver=1.0
 pkgrel=0
 pkgdesc="local symulator for developing on the infiniwatch"
 arch=("x86_64")
 url="https://github.com/InfiniTimeOrg/InfiniSim"
-
-#license=('GPL')
+makedepends=(cmake sdl2 gcc npm libpng)
+#source=("$pkgname-$pkgver::git+https://github.com/InfiniTimeOrg/InfiniSim.git")
+#md5sums=("SKIP")
+#license=('UNKOWIN')
 #groups=()
 #depends=()
-makedepends=(cmake sdl2 gcc npm libpng)
 #checkdepends=()
 #optdepends=()
 #provides=()
@@ -25,10 +21,8 @@ makedepends=(cmake sdl2 gcc npm libpng)
 #install=
 #changelog=
 
-source=("$pkgname-$pkgver::git+https://github.com/InfiniTimeOrg/InfiniSim.git")
-noextract=()
-md5sums=("SKIP")
-validpgpkeys=()
+#noextract=()
+#validpgpkeys=()
 
 git_url="https://github.com/InfiniTimeOrg/InfiniSim.git"
 
